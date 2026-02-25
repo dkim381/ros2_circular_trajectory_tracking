@@ -17,8 +17,8 @@ A feedforward + feedback controller is evaluated under varying curvature, angula
 ## Controller
 
 Reference (circle):
-x_d = c_x + R * cos(omega * t)  
-y_d = c_y + R * sin(omega * t)
+x_d = c_x + R cos(omega * t)  
+y_d = c_y + R sin(omega * t)
 
 Feedforward:
 - v_ff = R · ω
@@ -30,7 +30,7 @@ Feedback:
 
 Saturation:
 - v ∈ [0, 0.15] m/s
-- w ∈ [-1.5, 1.5] rad/s
+- ω ∈ [-1.5, 1.5] rad/s
 
 ---
 
@@ -71,10 +71,10 @@ Saturation:
 
 ## Key Findings
 
-- Feedforward reduces steady-state error (0.386 → 0.013 m).
-- Higher ω requires gain retuning due to saturation.
-- Noise degrades precision but maintains stability.
-- Larger radius increases transient error but converges.
+- Feedforward reduces steady-state error by ~97%.
+- Actuator saturation limits tracking performance at higher angular velocity.
+- Measurement noise increases residual error but does not destabilize the controller.
+- Tracking converges for larger curvature with increased transient response.
 
 ---
 

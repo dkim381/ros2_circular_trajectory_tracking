@@ -46,14 +46,26 @@ Saturation:
 
 ## Results
 
-| Case | RMSE (m) | Mean Error (last 20s) (m) |
-|------|----------|--------------------------|
-| Baseline | 0.718 | 0.013 |
-| High ω (tuned) | 0.703 | 0.008 |
-| High ω (untuned) | 1.281 | 1.355 |
-| Large Radius | 1.193 | 0.006 |
-| Noise | 0.737 | 0.046 |
-| No Feedforward | 0.817 | 0.386 |
+| Case | R (m) | ω (rad/s) | Gains | Noise (xy / yaw) | Feedforward | RMSE (m) | Mean Error (last 20s) (m) |
+|------|-------|------------|-------|------------------|-------------|----------|--------------------------|
+| Baseline | 2.0 | 0.07 | k_v=0.35, k_lat=2.20 | 0.01 / 0.005 | On | 0.718 | 0.013 |
+| High ω (nominal gains) | 2.0 | 0.10 | k_v=0.35, k_lat=2.20 | 0.01 / 0.005 | On | 1.281 | 1.355 |
+| High ω (retuned) | 2.0 | 0.10 | gains adjusted for stability | 0.01 / 0.005 | On | 0.703 | 0.008 |
+| Large Radius | 3.0 | 0.07 | k_v=0.35, k_lat=2.20 | 0.01 / 0.005 | On | 1.193 | 0.006 |
+| Increased Noise | 2.0 | 0.07 | k_v=0.35, k_lat=2.20 | 0.02 / 0.01 | On | 0.737 | 0.046 |
+| No Feedforward | 2.0 | 0.07 | k_v=0.35, k_lat=2.20 | 0.01 / 0.005 | Off | 0.817 | 0.386 |
+
+**Notes**
+
+- Nominal gains refer to the baseline controller gains  
+  (k_v = 0.35, k_lat = 2.20).
+
+- Retuned gains were adjusted to compensate for increased angular velocity (ω = 0.10 rad/s) under actuator saturation limits.
+
+- Increased noise case used:
+  - noise_xy_std = 0.02  
+  - noise_yaw_std = 0.01  
+  (baseline was 0.01 / 0.005).
 
 ---
 
